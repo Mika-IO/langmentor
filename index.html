@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0b14" />
+    <title>LangMentor</title>
+    <link rel="icon" href="./icon.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand"><span class="dot"></span>langmentor</div>
+      <nav class="modes" role="tablist">
+        <button data-mode="talk" role="tab" title="Talk — speaking & listening">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Talk</span>
+        </button>
+        <button data-mode="read" role="tab" title="Read — read out loud">
+          <svg viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1zM12 6v14"/></svg><span>Read</span>
+        </button>
+        <button data-mode="write" role="tab" title="Write — writing practice">
+          <svg viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19zM14 7l3 3"/></svg><span>Write</span>
+        </button>
+        <button data-mode="listen" role="tab" title="Listen — listening practice">
+          <svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0116 0v3M4 15h3v5H4zM17 15h3v5h-3z"/></svg><span>Listen</span>
+        </button>
+      </nav>
+      <button class="icon-btn" id="open-settings" title="Settings" aria-label="Settings">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+      </button>
+    </header>
+
+    <main class="stage">
+      <button class="orb" id="orb" aria-label="Tap to talk"><canvas id="face"></canvas></button>
+      <p class="status" id="status" aria-live="polite"></p>
+      <section class="panel" id="panel"></section>
+    </main>
+
+    <footer class="dock" id="dock"></footer>
+
+    <div class="boot" id="boot">
+      <div class="boot-card">
+        <h1>langmentor</h1>
+        <p class="lead">Your English tutor that runs <b>100% on this device</b>. Talk, read, write and listen — nothing leaves your computer.</p>
+        <ul class="loads" id="loads">
+          <li data-k="llm"><span>Brain</span><small id="llm-name"></small><i><b></b></i></li>
+          <li data-k="stt"><span>Ears</span><small>Whisper small</small><i><b></b></i></li>
+          <li data-k="tts"><span>Voice</span><small>Kokoro 82M</small><i><b></b></i></li>
+        </ul>
+        <p class="hint" id="boot-hint">Na primeira vez os modelos são baixados (alguns GB) e ficam guardados no navegador. Depois funciona offline.</p>
+        <button class="primary" id="start">Start</button>
+      </div>
+    </div>
+
+    <dialog id="settings">
+      <form method="dialog" class="sheet">
+        <h2>Settings</h2>
+        <label>Seu nível
+          <div class="seg" id="set-level"></div>
+        </label>
+        <label>Explicações em
+          <select id="set-lang"><option value="pt">Português</option><option value="en">English</option></select>
+        </label>
+        <label>Voz da tutora
+          <select id="set-voice">
+            <option value="af_heart">Heart · US</option>
+            <option value="af_bella">Bella · US</option>
+            <option value="af_nicole">Nicole · US (soft)</option>
+            <option value="am_michael">Michael · US</option>
+            <option value="am_fenrir">Fenrir · US</option>
+            <option value="bf_emma">Emma · UK</option>
+            <option value="bm_george">George · UK</option>
+          </select>
+        </label>
+        <label>Velocidade da fala
+          <select id="set-speed"><option value="0.8">Devagar</option><option value="0.9">Um pouco devagar</option><option value="1">Normal</option></select>
+        </label>
+        <label>Modelo de IA
+          <select id="set-model"></select>
+          <small id="model-note"></small>
+        </label>
+        <label class="row"><input type="checkbox" id="set-hands" /> Conversa mãos-livres (escuta automática)</label>
+        <div class="actions"><button value="cancel" class="ghost">Cancel</button><button value="ok" class="primary">Save</button></div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

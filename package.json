@@ -1,0 +1,23 @@
+{
+  "name": "langmentor",
+  "version": "0.1.0",
+  "description": "100% local voice tutor for English",
+  "scripts": {
+    "postinstall": "node scripts/copy-ort.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.3.0",
+    "@mlc-ai/web-llm": "^0.2.85",
+    "kokoro-js": "^1.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  },
+  "private": true,
+  "type": "module"
+}
