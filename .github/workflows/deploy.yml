@@ -23,10 +23,13 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - id: pages
+        uses: actions/configure-pages@v5
       - run: npm ci # postinstall copies the ONNX runtime into public/ort
       - run: npm run build
         env:
-          BASE_PATH: / # served at the root of langmentor-ai.com
+          # "" on a custom domain (langmentor-ai.com), "/langmentor" on the default Pages URL
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
